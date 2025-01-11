@@ -1,13 +1,19 @@
 import { Navbar } from "@/components/Navbar";
 import { ResourceDirectory } from "@/components/support/ResourceDirectory";
+import { motion } from "framer-motion";
 
 const Support = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50">
       <Navbar />
-      <div className="container mx-auto px-4 pt-24 pb-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="container mx-auto px-4 pt-24 pb-12"
+      >
         <ResourceDirectory />
-      </div>
+      </motion.div>
     </div>
   );
 };
