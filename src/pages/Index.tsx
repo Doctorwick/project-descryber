@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Shield, MessageSquare, Users, Database, Settings, ArrowRight } from "lucide-react";
+import { Shield, MessageSquare, Users, Database, Settings, ArrowRight, Sparkles, Heart, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { motion } from "framer-motion";
@@ -10,31 +10,46 @@ export default function Index() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-24 pb-16 text-center relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(155,135,245,0.1),transparent_50%)]" />
+      <section className="container mx-auto px-4 pt-32 pb-16 text-center relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800 bg-clip-text text-transparent">
-            Welcome to Descryber
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow" />
+            <div className="absolute bottom-0 left-0 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow" />
+          </div>
+          
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="mb-8 mx-auto w-24 h-24"
+          >
+            <div className="relative w-full h-full">
+              <Shield className="w-full h-full text-purple-500" />
+              <Sparkles className="absolute inset-0 m-auto w-12 h-12 text-purple-200 animate-pulse-slow" />
+            </div>
+          </motion.div>
+
+          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-gradient">
+            Your Safe Space Online
           </h1>
           <p className="mb-8 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Your trusted guardian against cyberbullying, providing safety and support 
-            across social media platforms with advanced AI protection.
+            Stay protected and express yourself freely! Descryber's got your back with 
+            smart AI that keeps the trolls away. 🛡️✨
           </p>
           <Link to="/simulation">
             <Button 
-              className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 
-                text-white px-6 sm:px-8 py-4 sm:py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all duration-300 
+              className="button-gradient px-6 sm:px-8 py-6 text-lg rounded-2xl 
                 group relative overflow-hidden"
             >
-              <span className="relative z-10">Try Demo</span>
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-purple-800 opacity-0 
-                group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="relative z-10 flex items-center gap-2">
+                Try It Now!
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
             </Button>
           </Link>
         </motion.div>
@@ -47,40 +62,39 @@ export default function Index() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-purple-600 to-purple-800 
-            bg-clip-text text-transparent"
+          className="text-3xl font-bold text-center mb-12 text-gradient"
         >
-          How Descryber Protects You
+          How We Keep You Safe ✨
         </motion.h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <FeatureCard
-            icon={<Shield className="w-8 h-8 text-purple-600" />}
-            title="Smart Filtering"
-            description="Automatically filters harmful messages using advanced natural language processing while maintaining your privacy."
+            icon={<Shield className="w-8 h-8 text-purple-500" />}
+            title="Smart Protection"
+            description="Our AI catches toxic messages before they reach you, keeping your space positive and safe! 🛡️"
             delay={0.1}
           />
           <FeatureCard
-            icon={<MessageSquare className="w-8 h-8 text-purple-600" />}
-            title="AI-Powered Detection"
-            description="Advanced AI distinguishes between different types of harmful content to provide appropriate responses."
+            icon={<MessageSquare className="w-8 h-8 text-purple-500" />}
+            title="Express Yourself"
+            description="Chat freely knowing you're protected. Be yourself without worrying about trolls! 💬"
             delay={0.2}
           />
           <FeatureCard
-            icon={<Users className="w-8 h-8 text-purple-600" />}
-            title="Support Network"
-            description="Access to professional support services and community organizations that understand what you're going through."
+            icon={<Users className="w-8 h-8 text-purple-500" />}
+            title="Community Love"
+            description="Join a supportive community that's got your back. You're never alone here! 💜"
             delay={0.3}
           />
           <FeatureCard
-            icon={<Database className="w-8 h-8 text-purple-600" />}
-            title="Secure Backups"
-            description="Safely store evidence of harassment with end-to-end encryption that can't be deleted by others."
+            icon={<Star className="w-8 h-8 text-purple-500" />}
+            title="Always Available"
+            description="24/7 protection that never sleeps. We're here whenever you need us! ⭐"
             delay={0.4}
           />
           <FeatureCard
-            icon={<Settings className="w-8 h-8 text-purple-600" />}
-            title="User Control"
-            description="Stay in control with smart override options while maintaining your safety."
+            icon={<Heart className="w-8 h-8 text-purple-500" />}
+            title="Your Privacy First"
+            description="Your data stays yours. We protect your privacy like it's our own! 🔒"
             delay={0.5}
           />
         </div>
@@ -88,7 +102,6 @@ export default function Index() {
 
       {/* Story Section */}
       <section className="py-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-50/50 to-white/50" />
         <div className="container mx-auto px-4 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -97,27 +110,23 @@ export default function Index() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-purple-600 to-purple-800 
-              bg-clip-text text-transparent">
-              Why We Created Descryber
+            <h2 className="text-3xl font-bold text-center mb-8 text-gradient">
+              Why We Created Descryber 💭
             </h2>
-            <div className="bg-white/80 backdrop-blur-md p-8 rounded-xl shadow-lg border border-purple-100">
-              <p className="text-gray-600 leading-relaxed">
-                Inspired by Aaron's personal experience with cyberbullying at age 14, 
-                Descryber was born from the need to protect young people online. When 
-                Aaron received threatening messages including images of his house, he 
-                felt helpless when the evidence was deleted before law enforcement 
-                could act. This experience drove us to create a solution that ensures 
-                no one else has to go through the same ordeal.
+            <div className="glass p-8 rounded-2xl">
+              <p className="text-gray-600 leading-relaxed text-lg">
+                It all started when Aaron, just like you, faced online harassment at 14. 
+                The trolls thought they could get away with it by deleting evidence - but 
+                that's when we decided enough was enough! Now we're here to make sure 
+                no one else goes through what Aaron did. We've got your back, always! 💪
               </p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Availability Section */}
+      {/* Coming Soon Section */}
       <section className="container mx-auto px-4 py-20 text-center relative">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(155,135,245,0.1),transparent_50%)]" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -125,13 +134,12 @@ export default function Index() {
           viewport={{ once: true }}
           className="relative"
         >
-          <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-purple-800 
-            bg-clip-text text-transparent">
-            Coming Soon
+          <h2 className="text-3xl font-bold mb-6 text-gradient">
+            Coming to Your Favorite Apps Soon! 📱
           </h2>
           <p className="mb-8 text-xl text-gray-600 max-w-2xl mx-auto">
-            Descryber will be available on both mobile and personal computer platforms, 
-            providing comprehensive protection wherever you are.
+            Whether you're on your phone or computer, Descryber will be there to protect 
+            you. Stay tuned for more awesome updates! ✨
           </p>
         </motion.div>
       </section>
@@ -152,13 +160,13 @@ function FeatureCard({ icon, title, description, delay }: {
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -5 }}
-      className="p-6 bg-white/80 backdrop-blur-md rounded-xl shadow-lg hover:shadow-xl transition-all 
-        duration-300 border border-purple-100 group"
+      className="glass p-6 rounded-2xl hover-card"
     >
-      <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-purple-600 to-purple-800 
-        bg-clip-text text-transparent">{title}</h3>
-      <p className="text-gray-600">{description}</p>
+      <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+        {icon}
+      </div>
+      <h3 className="text-xl font-semibold mb-2 text-gradient">{title}</h3>
+      <p className="text-gray-600 text-lg">{description}</p>
     </motion.div>
   );
 }

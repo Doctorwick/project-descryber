@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 export const Logo = () => {
   return (
     <motion.div 
-      className="relative w-10 h-10"
-      whileHover={{ scale: 1.05 }}
+      className="relative w-12 h-12 sm:w-14 sm:h-14"
+      whileHover={{ scale: 1.1, rotate: [0, -10, 10, -10, 0] }}
       whileTap={{ scale: 0.95 }}
     >
       <motion.div
@@ -14,7 +14,7 @@ export const Logo = () => {
         animate={{ opacity: 1, rotate: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <Shield className="w-full h-full text-purple-600" />
+        <Shield className="w-full h-full text-purple-500" />
       </motion.div>
       <motion.div
         className="absolute inset-0 flex items-center justify-center"
@@ -22,7 +22,7 @@ export const Logo = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.2, duration: 0.5 }}
       >
-        <Sparkles className="w-5 h-5 text-purple-100" />
+        <Sparkles className="w-6 h-6 sm:w-7 sm:h-7 text-purple-200 animate-pulse-slow" />
       </motion.div>
     </motion.div>
   );

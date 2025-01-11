@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Shield, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Logo } from "./Logo";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -26,22 +26,22 @@ export function Navbar() {
 
   const navLinks = [
     { path: "/", label: "Home" },
-    { path: "/simulation", label: "Try Demo" },
-    { path: "/history", label: "History" },
-    { path: "/support", label: "Support" },
+    { path: "/simulation", label: "Try It Out! 🚀" },
+    { path: "/history", label: "Your History" },
+    { path: "/support", label: "Get Help 💜" },
   ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      isScrolled ? "bg-white/90 shadow-lg backdrop-blur-md" : "bg-transparent"
+      isScrolled ? "glass shadow-lg" : "bg-transparent"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 sm:h-20">
           <div className="flex items-center">
             <Link to="/" className="flex items-center group">
               <Logo />
-              <span className="ml-2 text-lg sm:text-xl font-semibold bg-gradient-to-r from-purple-600 to-purple-800 
-                bg-clip-text text-transparent group-hover:from-purple-700 group-hover:to-purple-900 
+              <span className="ml-2 text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-500 to-purple-700 
+                bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-purple-800 
                 transition-all duration-300">
                 Descryber
               </span>
@@ -49,14 +49,14 @@ export function Navbar() {
           </div>
           
           {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-2">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 
+                className={`px-4 py-2 rounded-xl text-base font-medium transition-all duration-300 
                   ${location.pathname === link.path 
-                    ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-lg" 
+                    ? "button-gradient" 
                     : "text-gray-600 hover:bg-purple-50 hover:text-purple-600"
                   }`}
               >
@@ -67,9 +67,11 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
               type="button"
-              className="text-gray-600 hover:text-purple-600 p-2 rounded-md transition-colors duration-200"
+              className="text-gray-600 hover:text-purple-600 p-2 rounded-xl transition-colors duration-200"
               onClick={toggleMenu}
             >
               <motion.div
@@ -83,7 +85,7 @@ export function Navbar() {
                   <Menu className="h-6 w-6" />
                 )}
               </motion.div>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>
@@ -96,16 +98,16 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden overflow-hidden"
+            className="md:hidden"
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/80 backdrop-blur-md shadow-lg">
+            <div className="glass px-2 pt-2 pb-3 space-y-1 mx-4 mb-4 rounded-xl">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`block px-3 py-2 rounded-md text-base font-medium transition-all duration-300 
+                  className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 
                     ${location.pathname === link.path
-                      ? "bg-gradient-to-r from-purple-500 to-purple-600 text-white shadow-md"
+                      ? "button-gradient"
                       : "text-gray-600 hover:bg-purple-50 hover:text-purple-600"
                     }`}
                   onClick={() => setIsMenuOpen(false)}
