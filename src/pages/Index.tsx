@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50 overflow-hidden">
+    <div className="min-h-screen bg-background overflow-hidden">
       <Navbar />
       
       {/* Hero Section */}
@@ -14,15 +14,15 @@ export default function Index() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="relative"
         >
           <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 right-0 w-72 h-72 bg-[#9b87f5] rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow" />
-            <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#D946EF] rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-pulse-slow" />
+            <div className="absolute top-0 right-0 w-72 h-72 bg-[#9b87f5] rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse-slow" />
+            <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#D946EF] rounded-full mix-blend-multiply filter blur-2xl opacity-20 animate-pulse-slow" />
           </div>
 
-          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#9b87f5] via-[#D946EF] to-[#F97316] bg-clip-text text-transparent">
+          <h1 className="mb-6 text-4xl sm:text-5xl md:text-6xl font-bold text-gradient">
             Your Space, Your Rules
           </h1>
           <p className="mb-8 text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -30,9 +30,7 @@ export default function Index() {
           </p>
           <Link to="/simulation">
             <Button 
-              className="bg-gradient-to-r from-[#9b87f5] to-[#D946EF] hover:from-[#8B5CF6] hover:to-[#D946EF] 
-                px-6 sm:px-8 py-6 text-lg rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 
-                transition-all duration-300"
+              className="button-gradient px-6 sm:px-8 py-6 text-lg rounded-2xl"
             >
               Try It Now
             </Button>
@@ -47,7 +45,7 @@ export default function Index() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] bg-clip-text text-transparent"
+          className="text-3xl font-bold text-center mb-12 text-gradient"
         >
           How We Keep Your Space Safe
         </motion.h2>
@@ -95,7 +93,7 @@ export default function Index() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-3xl font-bold text-center mb-8 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold text-center mb-8 text-gradient">
               The Story Behind Descryber
             </h2>
             <div className="glass p-8 rounded-2xl hover:shadow-xl transition-all duration-300">
@@ -118,7 +116,7 @@ export default function Index() {
           viewport={{ once: true }}
           className="relative"
         >
-          <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] bg-clip-text text-transparent">
+          <h2 className="text-3xl font-bold mb-6 text-gradient">
             Coming to Your Favorite Apps Soon
           </h2>
           <p className="mb-8 text-xl text-gray-600 max-w-2xl mx-auto">
@@ -149,7 +147,7 @@ function FeatureCard({ icon, title, description, delay }: {
       <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
-      <h3 className="text-xl font-semibold mb-2 bg-gradient-to-r from-[#9b87f5] to-[#D946EF] bg-clip-text text-transparent">
+      <h3 className="text-xl font-semibold mb-2 text-gradient">
         {title}
       </h3>
       <p className="text-gray-600 text-lg">{description}</p>
