@@ -40,11 +40,8 @@ export default function Simulation() {
 
     setMessages([...messages, newMessage]);
     setInput("");
-
-    // Store user message
     await storeMessage(newMessage);
 
-    // Show toast only for harmful messages
     if (filterResult.isHarmful) {
       toast({
         title: "Message Hidden",
@@ -61,19 +58,16 @@ export default function Simulation() {
       });
     }
 
-    // Bot response with animation delay
     setTimeout(async () => {
       const botMessage: Message = {
         id: Date.now() + 1,
         text: filterResult.isHarmful 
-          ? `I noticed that message might contain ${filterResult.categories.join(" and ")}. Let's keep our conversation respectful! 🤝`
-          : "Message received! Keep testing our filter system. 👍",
+          ? `I noticed that message might contain ${filterResult.categories.join(" and ")}. Let's keep our conversation respectful.`
+          : "Message received! Keep testing our filter system.",
         sender: "bot",
         timestamp: new Date().toISOString()
       };
       setMessages((prevMessages: Message[]) => [...prevMessages, botMessage]);
-      
-      // Store bot response
       await storeMessage(botMessage);
     }, 1000);
   };
@@ -104,7 +98,7 @@ export default function Simulation() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-white to-purple-50/50">
       <Navbar />
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -112,30 +106,33 @@ export default function Simulation() {
         transition={{ duration: 0.5 }}
         className="container mx-auto px-4 pt-24"
       >
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.div 
-            className="bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8 border border-purple-100"
+            className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-purple-100/50 
+              hover:shadow-xl transition-shadow duration-300"
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex justify-between items-center">
-              <SimulationHeader />
-              <SimulationControls
-                isActive={isActive}
-                isPaused={isPaused}
-                onStart={handleStart}
-                onPause={handlePause}
-                onStop={handleStop}
+            <div className="p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <SimulationHeader />
+                <SimulationControls
+                  isActive={isActive}
+                  isPaused={isPaused}
+                  onStart={handleStart}
+                  onPause={handlePause}
+                  onStop={handleStop}
+                />
+              </div>
+              <MessageList messages={messages} />
+              <MessageInput
+                input={input}
+                setInput={setInput}
+                handleSend={handleSend}
+                isDisabled={!isActive || isPaused}
               />
             </div>
-            <MessageList messages={messages} />
-            <MessageInput
-              input={input}
-              setInput={setInput}
-              handleSend={handleSend}
-              isDisabled={!isActive || isPaused}
-            />
           </motion.div>
         </div>
       </motion.div>
