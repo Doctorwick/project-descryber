@@ -2,13 +2,14 @@ import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle, AlertTriangle } from "lucide-react";
+import { CheckCircle, AlertTriangle, History as HistoryIcon } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Message, MessageSender } from "@/types/message";
 import { FilterResult } from "@/types/filter";
 import { HistoryTable } from "@/components/history/HistoryTable";
 import { ClearHistoryDialog } from "@/components/history/ClearHistoryDialog";
 import { getMessageHistory, subscribeToHistory } from "@/utils/historyUtils";
+import { motion } from "framer-motion";
 
 export default function History() {
   const [history, setHistory] = useState<Message[]>([]);
@@ -132,15 +133,30 @@ export default function History() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50">
       <Navbar />
       <div className="container mx-auto px-4 pt-20">
-        <div className={`mx-auto mt-8 animate-fade-in ${isMobile ? 'w-full' : 'max-w-4xl'}`}>
-          <div className="bg-white rounded-lg shadow-lg p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
-                Message History
-              </h1>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`mx-auto mt-8 ${isMobile ? 'w-full' : 'max-w-4xl'}`}
+        >
+          <div className="glass rounded-2xl shadow-xl p-6 border border-purple-100/20">
+            <div className="flex justify-between items-center mb-8">
+              <div className="flex items-center gap-3">
+                <div className="p-3 bg-purple-100 rounded-xl">
+                  <HistoryIcon className="w-6 h-6 text-purple-600" />
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                    Message History
+                  </h1>
+                  <p className="text-gray-600 text-sm mt-1">
+                    Track and manage your message interactions
+                  </p>
+                </div>
+              </div>
               <ClearHistoryDialog onClear={clearHistory} />
             </div>
             <HistoryTable
@@ -150,7 +166,7 @@ export default function History() {
               isMobile={isMobile}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

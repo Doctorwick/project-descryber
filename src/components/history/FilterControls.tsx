@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { motion } from "framer-motion";
 
 interface FilterControlsProps {
   filter: "all" | "harmful";
@@ -26,22 +27,27 @@ export const FilterControls = ({
   setSortOrder,
 }: FilterControlsProps) => {
   return (
-    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-      <div className="flex flex-1 gap-2">
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between bg-white/50 p-4 rounded-xl border border-purple-100/20 backdrop-blur-sm"
+    >
+      <div className="flex flex-1 gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-purple-400" />
           <Input
             placeholder="Search messages..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-8"
+            className="pl-9 bg-white/70 border-purple-100 focus:border-purple-300 transition-colors"
           />
         </div>
         <Select
           value={filter}
           onValueChange={(value: "all" | "harmful") => setFilter(value)}
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[140px] bg-white/70 border-purple-100 hover:border-purple-300 transition-colors">
             <SelectValue placeholder="Filter messages" />
           </SelectTrigger>
           <SelectContent>
@@ -53,7 +59,7 @@ export const FilterControls = ({
           value={sortOrder}
           onValueChange={(value: "newest" | "oldest") => setSortOrder(value)}
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-[140px] bg-white/70 border-purple-100 hover:border-purple-300 transition-colors">
             <SelectValue placeholder="Sort order" />
           </SelectTrigger>
           <SelectContent>
@@ -62,6 +68,6 @@ export const FilterControls = ({
           </SelectContent>
         </Select>
       </div>
-    </div>
+    </motion.div>
   );
 };

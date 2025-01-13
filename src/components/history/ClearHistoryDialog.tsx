@@ -10,6 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Trash2 } from "lucide-react";
 
 interface ClearHistoryDialogProps {
   onClear: () => void;
@@ -19,20 +20,29 @@ export const ClearHistoryDialog = ({ onClear }: ClearHistoryDialogProps) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" className="hover:scale-105 transition-transform">
+        <Button 
+          variant="destructive" 
+          className="hover:scale-105 transition-transform flex items-center gap-2"
+        >
+          <Trash2 className="w-4 h-4" />
           Clear History
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className="glass border border-purple-100/20">
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete all message history.
+            This will permanently delete your entire message history. This action cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={onClear}>Continue</AlertDialogAction>
+          <AlertDialogCancel className="hover:bg-gray-100 transition-colors">Cancel</AlertDialogCancel>
+          <AlertDialogAction 
+            onClick={onClear}
+            className="bg-red-500 hover:bg-red-600 transition-colors"
+          >
+            Delete Everything
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
