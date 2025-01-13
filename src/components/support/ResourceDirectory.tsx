@@ -51,7 +51,7 @@ export const ResourceDirectory = () => {
         className="text-center mb-12"
       >
         <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent">
-          We've Got Your Back! 🤗
+          We've Got Your Back!
         </h1>
         <p className="text-gray-600 max-w-2xl mx-auto text-lg">
           Life can be tough sometimes, but you're not alone. Find support, advice, and resources that actually get you.
