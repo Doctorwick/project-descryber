@@ -12,17 +12,17 @@
     --popover-foreground: 213 31% 91%;
     --primary: 210 100% 50%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-    --destructive: 0 84.2% 60.2%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 50%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 224 76% 48%;
     --radius: 1rem;
   }
 }
@@ -35,7 +35,7 @@
     @apply bg-background text-foreground antialiased;
     background-image: radial-gradient(
       circle at top right,
-      rgba(0, 149, 255, 0.15),
+      rgba(0, 149, 255, 0.07),
       transparent 40%
     );
     background-attachment: fixed;
@@ -44,7 +44,7 @@
 
 @layer utilities {
   .glass {
-    @apply bg-background/40 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-secondary/40 backdrop-blur-md border border-white/10 shadow-xl;
   }
   
   .text-balance {
@@ -63,22 +63,4 @@
     @apply bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 
       text-white transition-all duration-300 shadow-lg hover:shadow-xl;
   }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.animate-pulse-slow {
-  animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
 }
