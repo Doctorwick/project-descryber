@@ -133,7 +133,7 @@ export default function History() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-purple-50">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <div className="container mx-auto px-4 pt-20">
         <motion.div 
@@ -142,17 +142,17 @@ export default function History() {
           transition={{ duration: 0.5 }}
           className={`mx-auto mt-8 ${isMobile ? 'w-full' : 'max-w-4xl'}`}
         >
-          <div className="glass rounded-2xl shadow-xl p-6 border border-purple-100/20">
+          <div className="glass rounded-2xl shadow-xl p-6 border border-blue-500/20">
             <div className="flex justify-between items-center mb-8">
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-purple-100 rounded-xl">
-                  <HistoryIcon className="w-6 h-6 text-purple-600" />
+                <div className="p-3 bg-blue-500/20 rounded-xl">
+                  <HistoryIcon className="w-6 h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+                  <h1 className="text-2xl font-bold text-gradient">
                     Message History
                   </h1>
-                  <p className="text-gray-600 text-sm mt-1">
+                  <p className="text-muted-foreground text-sm mt-1">
                     Track and manage your message interactions
                   </p>
                 </div>

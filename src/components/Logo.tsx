@@ -53,6 +53,14 @@ export const Logo = () => {
           />
         </svg>
       </motion.div>
+      
+      <motion.span 
+        initial={{ opacity: 0, x: -10 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="text-xl font-bold text-gradient"
+      >
+        Descryber
+      </motion.span>
     </div>
   );
 };
