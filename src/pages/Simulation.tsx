@@ -98,7 +98,7 @@ export default function Simulation() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50/50 via-white to-purple-50/50">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -108,8 +108,8 @@ export default function Simulation() {
       >
         <div className="max-w-4xl mx-auto">
           <motion.div 
-            className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-purple-100/50 
-              hover:shadow-xl transition-shadow duration-300"
+            className="glass rounded-2xl shadow-xl border border-white/10 
+              hover:shadow-2xl transition-shadow duration-300"
             initial={{ scale: 0.95 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.3 }}

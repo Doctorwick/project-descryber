@@ -3,64 +3,73 @@ import { motion } from "framer-motion";
 export const Logo = () => {
   return (
     <div className="flex items-center gap-2">
-      <motion.div 
-        className="relative w-12 h-12"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 0.5,
+          ease: "easeOut"
+        }}
+        className="relative w-10 h-10"
       >
-        <svg 
-          viewBox="0 0 100 100" 
-          className="w-full h-full drop-shadow-[0_0_10px_rgba(0,149,255,0.3)]"
+        <svg
+          viewBox="0 0 40 40"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-full"
         >
-          <defs>
-            <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style={{ stopColor: "#0095ff" }} />
-              <stop offset="100%" style={{ stopColor: "#0066cc" }} />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-              <feMerge>
-                <feMergeNode in="coloredBlur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
+          {/* Outer glow effect */}
+          <motion.circle
+            cx="20"
+            cy="20"
+            r="18"
+            className="animate-glow"
+            fill="url(#blue-glow)"
+            fillOpacity="0.2"
+          />
           
-          {/* Shield background with subtle circuit pattern */}
-          <path 
-            d="M50 10 L90 25 L90 45 C90 65 75 85 50 90 C25 85 10 65 10 45 L10 25 Z" 
-            fill="url(#shieldGradient)"
-            stroke="#0066cc"
-            strokeWidth="2"
+          {/* Shield background */}
+          <path
+            d="M20 4C13.5 4 8 9.5 8 16V28C8 31.3 10.7 34 14 34H26C29.3 34 32 31.3 32 28V16C32 9.5 26.5 4 20 4Z"
+            fill="url(#shield-gradient)"
             className="drop-shadow-lg"
           />
           
-          {/* Circuit lines */}
-          <path 
-            d="M30 40 H45 M55 40 H70 M50 30 V45" 
-            stroke="white"
-            strokeWidth="1.5"
-            filter="url(#glow)"
+          {/* Letter D */}
+          <path
+            d="M16 14V26H20C23.3 26 26 23.3 26 20C26 16.7 23.3 14 20 14H16ZM19 17H20C21.7 17 23 18.3 23 20C23 21.7 21.7 23 20 23H19V17Z"
+            fill="white"
+            className="drop-shadow"
           />
-          
-          {/* D symbol */}
-          <path 
-            d="M35 55 Q50 35 65 55 Q50 75 35 55" 
-            fill="none"
-            stroke="white"
-            strokeWidth="2"
-            filter="url(#glow)"
-          />
+
+          {/* Gradients */}
+          <defs>
+            <radialGradient
+              id="blue-glow"
+              cx="0"
+              cy="0"
+              r="1"
+              gradientUnits="userSpaceOnUse"
+              gradientTransform="translate(20 20) rotate(90) scale(20)"
+            >
+              <stop stopColor="#60A5FA" />
+              <stop offset="1" stopColor="#3B82F6" stopOpacity="0" />
+            </radialGradient>
+            
+            <linearGradient
+              id="shield-gradient"
+              x1="20"
+              y1="4"
+              x2="20"
+              y2="34"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#60A5FA" />
+              <stop offset="1" stopColor="#3B82F6" />
+            </linearGradient>
+          </defs>
         </svg>
       </motion.div>
-      
-      <motion.span 
-        initial={{ opacity: 0, x: -10 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="text-xl font-bold text-gradient"
-      >
-        Descryber
-      </motion.span>
     </div>
   );
 };
