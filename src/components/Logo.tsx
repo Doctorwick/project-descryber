@@ -13,8 +13,8 @@ export const Logo = () => {
       >
         <defs>
           <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: "#9b87f5" }} />
-            <stop offset="100%" style={{ stopColor: "#7E69AB" }} />
+            <stop offset="0%" style={{ stopColor: "#0095ff" }} />
+            <stop offset="100%" style={{ stopColor: "#0066cc" }} />
           </linearGradient>
           <filter id="glow">
             <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -29,7 +29,7 @@ export const Logo = () => {
         <path 
           d="M50 10 L90 25 L90 45 C90 65 75 85 50 90 C25 85 10 65 10 45 L10 25 Z" 
           fill="url(#logoGradient)"
-          stroke="#6E59A5"
+          stroke="#0066cc"
           strokeWidth="2"
           className="drop-shadow-lg"
         />

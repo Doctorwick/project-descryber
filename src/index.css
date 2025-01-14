@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    --background: 265 100% 98%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 267 75% 75%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 267 50% 90%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 267 50% 95%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 267 75% 85%;
-    --accent-foreground: 240 5.9% 10%;
+    --background: 222 47% 11%;
+    --foreground: 213 31% 91%;
+    --card: 222 47% 11%;
+    --card-foreground: 213 31% 91%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 213 31% 91%;
+    --primary: 210 100% 50%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 267 50% 90%;
-    --input: 267 50% 90%;
-    --ring: 267 75% 75%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 210 100% 50%;
     --radius: 1rem;
   }
 }
@@ -35,7 +35,7 @@
     @apply bg-background text-foreground antialiased;
     background-image: radial-gradient(
       circle at top right,
-      rgba(155, 135, 245, 0.15),
+      rgba(0, 149, 255, 0.15),
       transparent 40%
     );
     background-attachment: fixed;
@@ -44,7 +44,7 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+    @apply bg-background/40 backdrop-blur-md border border-white/10 shadow-xl;
   }
   
   .text-balance {
@@ -52,7 +52,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-800;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600;
   }
 
   .hover-card {
@@ -60,7 +60,7 @@
   }
 
   .button-gradient {
-    @apply bg-gradient-to-r from-purple-500 to-purple-700 hover:from-purple-600 hover:to-purple-800 
+    @apply bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 
       text-white transition-all duration-300 shadow-lg hover:shadow-xl;
   }
 }
