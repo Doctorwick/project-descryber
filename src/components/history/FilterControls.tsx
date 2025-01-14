@@ -1,4 +1,4 @@
-import { Search, SlidersHorizontal } from "lucide-react";
+import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -31,23 +31,23 @@ export const FilterControls = ({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between bg-white/50 p-4 rounded-xl border border-purple-100/20 backdrop-blur-sm"
+      className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between bg-background/50 p-4 rounded-xl border border-blue-500/20 backdrop-blur-sm"
     >
       <div className="flex flex-1 gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-purple-400" />
+          <Search className="absolute left-3 top-2.5 h-4 w-4 text-blue-400" />
           <Input
             placeholder="Search messages..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="pl-9 bg-white/70 border-purple-100 focus:border-purple-300 transition-colors"
+            className="pl-9 bg-background/70 border-blue-500/20 focus:border-blue-500/50 transition-colors text-foreground"
           />
         </div>
         <Select
           value={filter}
           onValueChange={(value: "all" | "harmful") => setFilter(value)}
         >
-          <SelectTrigger className="w-[140px] bg-white/70 border-purple-100 hover:border-purple-300 transition-colors">
+          <SelectTrigger className="w-[140px] bg-background/70 border-blue-500/20 hover:border-blue-500/50 transition-colors text-foreground">
             <SelectValue placeholder="Filter messages" />
           </SelectTrigger>
           <SelectContent>
@@ -59,7 +59,7 @@ export const FilterControls = ({
           value={sortOrder}
           onValueChange={(value: "newest" | "oldest") => setSortOrder(value)}
         >
-          <SelectTrigger className="w-[140px] bg-white/70 border-purple-100 hover:border-purple-300 transition-colors">
+          <SelectTrigger className="w-[140px] bg-background/70 border-blue-500/20 hover:border-blue-500/50 transition-colors text-foreground">
             <SelectValue placeholder="Sort order" />
           </SelectTrigger>
           <SelectContent>

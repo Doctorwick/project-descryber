@@ -27,7 +27,7 @@ export const SimulationControls = ({
       {!isActive ? (
         <Button 
           onClick={onStart}
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 
+          className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 hover:border-blue-500/50
             transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 px-4 sm:px-6 
             text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl"
         >
@@ -39,10 +39,11 @@ export const SimulationControls = ({
           <Button 
             onClick={onPause}
             className={`transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 
-              px-4 sm:px-6 text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl ${
+              px-4 sm:px-6 text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl
+              border border-blue-500/30 hover:border-blue-500/50 ${
               isPaused 
-                ? 'bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700' 
-                : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700'
+                ? 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300' 
+                : 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-300'
             }`}
           >
             <Pause className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -50,7 +51,7 @@ export const SimulationControls = ({
           </Button>
           <Button 
             onClick={onStop}
-            className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 
+            className="bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 hover:border-red-500/50
               transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 px-4 sm:px-6 
               text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl"
           >

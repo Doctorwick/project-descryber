@@ -26,7 +26,7 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
     >
       <Card 
         className={cn(
-          "overflow-hidden border-l-4 transition-all duration-200 hover:shadow-md",
+          "overflow-hidden border-l-4 transition-all duration-200 hover:shadow-md bg-background/50 backdrop-blur-md hover:bg-background/80",
           severity === 'high' 
             ? "border-l-red-500" 
             : severity === 'medium'
@@ -38,8 +38,8 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
           <div className="flex flex-col space-y-3">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-gray-400" />
-                <span className="text-sm text-gray-600">
+                <Clock className="w-4 h-4 text-blue-400" />
+                <span className="text-sm text-blue-200/70">
                   {format(new Date(message.timestamp), "PPpp")}
                 </span>
               </div>
@@ -53,7 +53,7 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
                         ? 'warning'
                         : 'default'
                     }
-                    className="capitalize"
+                    className="capitalize bg-background/50 backdrop-blur-sm"
                   >
                     {severity}
                   </Badge>
@@ -62,7 +62,7 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
                   variant="ghost"
                   size="sm"
                   onClick={() => onCopy(message.text)}
-                  className="h-7"
+                  className="h-7 hover:bg-blue-500/20 text-blue-300"
                 >
                   Copy
                 </Button>
@@ -73,25 +73,25 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
               <div className={cn(
                 "p-2 rounded-full",
                 message.sender === "user" 
-                  ? "bg-purple-100" 
-                  : "bg-blue-100"
+                  ? "bg-purple-500/20" 
+                  : "bg-blue-500/20"
               )}>
                 <MessageSquare className={cn(
                   "w-4 h-4",
                   message.sender === "user"
-                    ? "text-purple-600"
-                    : "text-blue-600"
+                    ? "text-purple-400"
+                    : "text-blue-400"
                 )} />
               </div>
               
               <div className="flex-1">
                 {message.isHidden ? (
-                  <div className="flex items-center space-x-2 text-gray-400">
+                  <div className="flex items-center space-x-2 text-red-400">
                     <AlertTriangle className="w-4 h-4" />
                     <span className="italic">Message hidden due to harmful content</span>
                   </div>
                 ) : (
-                  <p className="text-gray-800">{message.text}</p>
+                  <p className="text-foreground/90">{message.text}</p>
                 )}
               </div>
             </div>
@@ -102,7 +102,7 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
                   <Badge
                     key={idx}
                     variant="outline"
-                    className="text-xs"
+                    className="text-xs bg-blue-950/50 text-blue-200 border-blue-500/30"
                   >
                     {category}
                   </Badge>
@@ -121,7 +121,7 @@ export const MessageCard = ({ message, restoringId, onRestore, onCopy }: Message
                   size="sm"
                   onClick={() => onRestore(message.id)}
                   disabled={restoringId === message.id}
-                  className="group relative overflow-hidden bg-white hover:bg-purple-50 transition-colors"
+                  className="group relative overflow-hidden hover:bg-blue-500/20 transition-colors border-blue-500/30 text-blue-300"
                 >
                   <motion.div
                     animate={restoringId === message.id ? { rotate: 360 } : {}}
