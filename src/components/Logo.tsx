@@ -62,11 +62,11 @@ export const Logo = () => {
       </motion.div>
       
       <motion.span 
-        initial={{ opacity: 0, x: -10 }}
+        initial={{ opacity: 0, x: -12 }}
         animate={{ opacity: 1, x: 0 }}
         className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
       >
-      escryber
+        escryber
       </motion.span>
     </div>
   );
