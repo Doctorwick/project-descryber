@@ -40,11 +40,6 @@ export function Navbar() {
           <div className="flex items-center">
             <Link to="/" className="flex items-center group">
               <Logo />
-              <span className="ml-2 text-xl sm:text-2xl font-bold bg-gradient-to-r from-purple-500 to-purple-700 
-                bg-clip-text text-transparent group-hover:from-purple-600 group-hover:to-purple-800 
-                transition-all duration-300">
-                Descryber
-              </span>
             </Link>
           </div>
           
@@ -56,8 +51,8 @@ export function Navbar() {
                 to={link.path}
                 className={`px-4 py-2 rounded-xl text-base font-medium transition-all duration-300 
                   ${location.pathname === link.path 
-                    ? "button-gradient" 
-                    : "text-gray-600 hover:bg-purple-50 hover:text-purple-600"
+                    ? "bg-blue-500/20 hover:bg-blue-500/30 text-blue-300" 
+                    : "text-gray-400 hover:bg-blue-500/10 hover:text-blue-300"
                   }`}
               >
                 {link.label}
@@ -71,7 +66,7 @@ export function Navbar() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               type="button"
-              className="text-gray-600 hover:text-purple-600 p-2 rounded-xl transition-colors duration-200"
+              className="text-gray-400 hover:text-blue-300 p-2 rounded-xl transition-colors duration-200"
               onClick={toggleMenu}
             >
               <motion.div
@@ -107,8 +102,8 @@ export function Navbar() {
                   to={link.path}
                   className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 
                     ${location.pathname === link.path
-                      ? "button-gradient"
-                      : "text-gray-600 hover:bg-purple-50 hover:text-purple-600"
+                      ? "bg-blue-500/20 hover:bg-blue-500/30 text-blue-300"
+                      : "text-gray-400 hover:bg-blue-500/10 hover:text-blue-300"
                     }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
