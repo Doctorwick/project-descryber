@@ -12,7 +12,7 @@ export const Logo = () => {
           duration: 0.5,
           ease: "easeOut"
         }}
-        className="relative w-8 h-8"
+        className="relative w-10 h-10"
       >
         <svg
           viewBox="0 0 40 40"
@@ -37,6 +37,13 @@ export const Logo = () => {
             strokeLinecap="round"
           />
 
+          {/* Letter D */}
+          <path
+            d="M16 14V26H20C23.3 26 26 23.3 26 20C26 16.7 23.3 14 20 14H16ZM19 17H20C21.7 17 23 18.3 23 20C23 21.7 21.7 23 20 23H19V17Z"
+            fill="white"
+            className="drop-shadow"
+          />
+
           {/* Gradients */}
           <defs>
             <linearGradient
@@ -57,7 +64,7 @@ export const Logo = () => {
       <motion.span 
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
-        className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
+        className="text-xl font-bold text-gradient"
       >
         escryber
       </motion.span>
