@@ -40,10 +40,10 @@ export const SimulationControls = ({
             onClick={onPause}
             className={`transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 
               px-4 sm:px-6 text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl
-              border border-blue-500/30 hover:border-blue-500/50 ${
+              border border-yellow-500/30 hover:border-yellow-500/50 ${
               isPaused 
                 ? 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300' 
-                : 'bg-blue-500/20 hover:bg-blue-500/30 text-blue-300'
+                : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300'
             }`}
           >
             <Pause className="w-4 h-4 sm:w-5 sm:h-5" />

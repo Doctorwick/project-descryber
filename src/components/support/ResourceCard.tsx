@@ -16,13 +16,13 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
   const getCategoryIcon = (category: string) => {
     switch (category.toLowerCase()) {
       case "crisis":
-        return <LifeBuoy className="h-5 w-5 text-red-400" />;
+        return <LifeBuoy className="h-5 w-5 text-blue-400" />;
       case "mental":
-        return <Heart className="h-5 w-5 text-pink-400" />;
+        return <Heart className="h-5 w-5 text-blue-400" />;
       case "communication":
-        return <MessageSquare className="h-5 w-5 text-purple-400" />;
+        return <MessageSquare className="h-5 w-5 text-blue-400" />;
       default:
-        return <Sparkles className="h-5 w-5 text-orange-400" />;
+        return <Sparkles className="h-5 w-5 text-blue-400" />;
     }
   };
 
@@ -37,21 +37,21 @@ export const ResourceCard = ({ resource }: ResourceCardProps) => {
         rel="noopener noreferrer"
         className="block"
       >
-        <Card className="bg-white/90 backdrop-blur-sm border-purple-100 hover:shadow-xl hover:shadow-purple-100/50 transition-all duration-300">
+        <Card className="bg-background/90 backdrop-blur-sm border-blue-500/20 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300">
           <CardHeader className="p-4">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
                 {getCategoryIcon(resource.category)}
-                <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent capitalize">
+                <span className="text-sm font-medium text-blue-400 capitalize">
                   {resource.category}
                 </span>
               </div>
-              <ExternalLink className="h-4 w-4 text-purple-400" />
+              <ExternalLink className="h-4 w-4 text-blue-400" />
             </div>
-            <CardTitle className="text-lg font-bold bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
+            <CardTitle className="text-lg font-bold text-blue-300">
               {resource.name}
             </CardTitle>
-            <CardDescription className="text-sm text-gray-600 mt-1">
+            <CardDescription className="text-sm text-gray-400 mt-1">
               {resource.description}
             </CardDescription>
           </CardHeader>
