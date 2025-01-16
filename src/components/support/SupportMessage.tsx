@@ -23,13 +23,13 @@ export const SupportMessage = ({ message }: SupportMessageProps) => {
       >
         <div className={`p-2 rounded-full ${
           message.type === "user"
-            ? "bg-purple-100"
+            ? "bg-blue-100"
             : message.isUrgent
             ? "bg-red-100"
             : "bg-gray-100"
         }`}>
           {message.type === "user" ? (
-            <User className="w-4 h-4 text-purple-600" />
+            <User className="w-4 h-4 text-blue-600" />
           ) : message.isUrgent ? (
             <AlertTriangle className="w-4 h-4 text-red-600" />
           ) : (
@@ -39,7 +39,7 @@ export const SupportMessage = ({ message }: SupportMessageProps) => {
         <div
           className={`p-4 rounded-xl ${
             message.type === "user"
-              ? "bg-purple-600 text-white"
+              ? "bg-blue-600 text-white"
               : message.isUrgent
               ? "bg-red-50 border border-red-200"
               : "bg-white border border-gray-200"
