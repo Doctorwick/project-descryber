@@ -70,7 +70,7 @@ export const MessageRestoreButton = ({ messageId, onRestore }: MessageRestoreBut
         size="sm"
         className={cn(
           "gap-2 transition-all duration-300",
-          isSuccess ? "bg-green-50 text-green-600" : "bg-purple-50 hover:bg-purple-100"
+          isSuccess ? "bg-green-50 text-green-600" : "bg-blue-900/20 hover:bg-blue-900/30 text-blue-400"
         )}
         onClick={handleRestore}
         disabled={isRestoring || isSuccess}

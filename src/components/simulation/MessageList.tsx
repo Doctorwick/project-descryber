@@ -50,8 +50,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
                 className={cn(
                   "max-w-[90%] sm:max-w-[80%] rounded-2xl shadow-lg backdrop-blur-sm",
                   message.sender === "user"
-                    ? "bg-gradient-to-br from-purple-600 to-purple-700 text-white"
-                    : "bg-white/90 border border-purple-100 text-gray-800"
+                    ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white"
+                    : "bg-blue-900/20 border border-blue-500/20 text-blue-100"
                 )}
               >
                 <div className="p-3 sm:p-4 space-y-3">
@@ -59,13 +59,13 @@ export const MessageList = ({ messages }: MessageListProps) => {
                     <div className={cn(
                       "p-1.5 sm:p-2 rounded-full",
                       message.sender === "user" 
-                        ? "bg-purple-500/20" 
-                        : "bg-purple-100"
+                        ? "bg-blue-500/20" 
+                        : "bg-blue-400/20"
                     )}>
                       {message.sender === "user" ? (
-                        <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                        <User className="w-3 h-3 sm:w-4 sm:h-4 text-blue-200" />
                       ) : (
-                        <Bot className="w-3 h-3 sm:w-4 sm:h-4 text-purple-600" />
+                        <Bot className="w-3 h-3 sm:w-4 sm:h-4 text-blue-300" />
                       )}
                     </div>
                     
@@ -102,7 +102,7 @@ export const MessageList = ({ messages }: MessageListProps) => {
                         opacity: expandedMessage === message.id ? 1 : 0,
                         height: expandedMessage === message.id ? "auto" : 0
                       }}
-                      className="pt-2 border-t border-purple-100/20"
+                      className="pt-2 border-t border-blue-500/20"
                     >
                       {message.filterResult && (
                         <div className="space-y-2 text-sm">
@@ -114,8 +114,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
                                   className={cn(
                                     "px-2 py-1 rounded-full text-xs",
                                     message.sender === "user"
-                                      ? "bg-purple-500/20 text-white"
-                                      : "bg-purple-100 text-purple-700"
+                                      ? "bg-blue-500/20 text-blue-200"
+                                      : "bg-blue-400/20 text-blue-300"
                                   )}
                                 >
                                   {category}
@@ -131,8 +131,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
                                 size="sm"
                                 onClick={() => handleFeedback(message.id, true)}
                                 className={cn(
-                                  "hover:bg-green-100 hover:text-green-700",
-                                  message.sender === "user" && "text-white hover:text-green-700"
+                                  "hover:bg-green-900/20 hover:text-green-400",
+                                  message.sender === "user" && "text-blue-200 hover:text-green-400"
                                 )}
                               >
                                 <ThumbsUp className="w-4 h-4" />
@@ -142,8 +142,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
                                 size="sm"
                                 onClick={() => handleFeedback(message.id, false)}
                                 className={cn(
-                                  "hover:bg-red-100 hover:text-red-700",
-                                  message.sender === "user" && "text-white hover:text-red-700"
+                                  "hover:bg-red-900/20 hover:text-red-400",
+                                  message.sender === "user" && "text-blue-200 hover:text-red-400"
                                 )}
                               >
                                 <ThumbsDown className="w-4 h-4" />
@@ -165,8 +165,8 @@ export const MessageList = ({ messages }: MessageListProps) => {
                   className={cn(
                     "w-full rounded-none border-t text-xs sm:text-sm",
                     message.sender === "user"
-                      ? "border-purple-500/20 text-white hover:bg-purple-500/20"
-                      : "border-purple-100 hover:bg-purple-50"
+                      ? "border-blue-500/20 text-blue-200 hover:bg-blue-500/20"
+                      : "border-blue-400/20 hover:bg-blue-400/10"
                   )}
                 >
                   {expandedMessage === message.id ? "Show Less" : "Show More"}
