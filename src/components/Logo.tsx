@@ -6,7 +6,11 @@ export const Logo = () => {
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ 
+          scale: 1.05,
+          filter: "brightness(1.2)",
+          transition: { duration: 0.2 }
+        }}
         whileTap={{ scale: 0.95 }}
         transition={{
           duration: 0.5,
@@ -18,53 +22,75 @@ export const Logo = () => {
           viewBox="0 0 40 40"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-full drop-shadow-lg"
+          className="w-full h-full"
         >
-          {/* Shield background with glow */}
-          <motion.path
-            d="M20 4L32 8V20C32 28 26 34 20 36C14 34 8 28 8 20V8L20 4Z"
-            className="animate-glow"
-            fill="url(#shield-gradient)"
-            stroke="rgba(96, 165, 250, 0.5)"
-            strokeWidth="1"
-          />
-          
-          {/* Circuit pattern */}
-          <path
-            d="M16 16H24M20 12V20"
-            stroke="rgba(255, 255, 255, 0.7)"
-            strokeWidth="1"
-            strokeLinecap="round"
-          />
-
-          {/* Letter D */}
-          <path
-            d="M16 14V26H20C23.3 26 26 23.3 26 20C26 16.7 23.3 14 20 14H16ZM19 17H20C21.7 17 23 18.3 23 20C23 21.7 21.7 23 20 23H19V17Z"
-            fill="white"
-            className="drop-shadow"
-          />
-
-          {/* Gradients */}
+          {/* Outer glow effect */}
           <defs>
-            <linearGradient
-              id="shield-gradient"
-              x1="20"
-              y1="4"
-              x2="20"
-              y2="36"
-              gradientUnits="userSpaceOnUse"
-            >
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+              <feFlood floodColor="#0EA5E9" floodOpacity="0.5" result="glowColor"/>
+              <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow"/>
+              <feMerge>
+                <feMergeNode in="softGlow"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+
+            {/* Enhanced gradients */}
+            <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#0EA5E9" />
+              <stop offset="50%" stopColor="#1E40AF" />
+              <stop offset="100%" stopColor="#0284C7" />
+            </linearGradient>
+
+            <linearGradient id="circuit-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#60A5FA" />
-              <stop offset="100%" stopColor="#3B82F6" />
+              <stop offset="100%" stopColor="#93C5FD" />
+            </linearGradient>
+
+            {/* Metallic effect */}
+            <linearGradient id="metallic" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="rgba(255,255,255,0.5)" />
+              <stop offset="50%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0.25)" />
             </linearGradient>
           </defs>
+
+          {/* Base shield with enhanced glow and metallic effect */}
+          <motion.path
+            d="M20 4L32 8V20C32 28 26 34 20 36C14 34 8 28 8 20V8L20 4Z"
+            fill="url(#shield-gradient)"
+            stroke="url(#circuit-gradient)"
+            strokeWidth="0.5"
+            filter="url(#glow)"
+            className="animate-pulse"
+          />
+
+          {/* Decorative tech lines */}
+          <g stroke="url(#circuit-gradient)" strokeWidth="0.5" opacity="0.8">
+            <path d="M14 12H26M20 8V16" strokeLinecap="round" />
+            <path d="M12 20H16M24 20H28" strokeLinecap="round" />
+            <path d="M16 28L20 24L24 28" strokeLinecap="round" />
+          </g>
+
+          {/* Enhanced D symbol */}
+          <path
+            d="M16 14V26H20C23.3 26 26 23.3 26 20C26 16.7 23.3 14 20 14H16Z"
+            fill="white"
+            fillOpacity="0.95"
+            filter="url(#glow)"
+          />
+          <path
+            d="M19 17H20C21.7 17 23 18.3 23 20C23 21.7 21.7 23 20 23H19V17Z"
+            fill="url(#shield-gradient)"
+          />
         </svg>
       </motion.div>
       
       <motion.span 
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
-        className="text-xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
+        className="text-xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent"
       >
         escryber
       </motion.span>
