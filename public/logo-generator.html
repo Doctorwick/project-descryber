@@ -6,6 +6,14 @@
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <style>
+    #logo-container {
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
 </head>
 <body>
   <div id="logo-container"></div>
@@ -58,24 +66,38 @@
       );
     };
 
-    ReactDOM.render(
-      <NewLogo />,
-      document.getElementById('logo-container')
-    );
+    // Render the logo
+    const root = ReactDOM.createRoot(document.getElementById('logo-container'));
+    root.render(<NewLogo />);
 
-    // Wait for the SVG to be rendered
-    setTimeout(() => {
-      const element = document.querySelector('svg');
-      html2canvas(element, {
-        backgroundColor: null,
-        scale: 2, // Increase quality
-      }).then(canvas => {
+    // Function to generate and download PNG
+    const generatePNG = async () => {
+      try {
+        const element = document.querySelector('svg');
+        if (!element) {
+          console.error('SVG element not found');
+          return;
+        }
+
+        const canvas = await html2canvas(element, {
+          backgroundColor: null,
+          scale: 4, // Increased quality
+          logging: true,
+        });
+
         const link = document.createElement('a');
         link.download = 'logo.png';
         link.href = canvas.toDataURL('image/png');
+        document.body.appendChild(link);
         link.click();
-      });
-    }, 500);
+        document.body.removeChild(link);
+      } catch (error) {
+        console.error('Error generating PNG:', error);
+      }
+    };
+
+    // Wait for everything to be properly rendered
+    setTimeout(generatePNG, 1000);
   </script>
 </body>
 </html>
