@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo Generator</title>
+</head>
+<body>
+  <div id="logo-container"></div>
+  <script type="module">
+    import { NewLogo } from '../src/components/NewLogo';
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+
+    ReactDOM.render(
+      React.createElement(NewLogo),
+      document.getElementById('logo-container')
+    );
+
+    // After rendering, use html2canvas to capture the SVG
+    const element = document.querySelector('svg');
+    const canvas = document.createElement('canvas');
+    canvas.width = 100;
+    canvas.height = 100;
+    const ctx = canvas.getContext('2d');
+    
+    // Convert SVG to data URL
+    const svgData = new XMLSerializer().serializeToString(element);
+    const img = new Image();
+    img.onload = () => {
+      ctx.drawImage(img, 0, 0);
+      // Download the canvas as PNG
+      const link = document.createElement('a');
+      link.download = 'logo.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(svgData);
+  </script>
+</body>
+</html>
