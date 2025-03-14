@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 export const NewLogo = () => {
@@ -12,8 +13,8 @@ export const NewLogo = () => {
       {/* Shield Background with Gradient */}
       <defs>
         <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#0EA5E9" />
-          <stop offset="100%" stopColor="#2563EB" />
+          <stop offset="0%" stopColor="#1E90FF" />
+          <stop offset="100%" stopColor="#6366F1" />
         </linearGradient>
         <filter id="glow">
           <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
@@ -46,7 +47,7 @@ export const NewLogo = () => {
       />
       <path
         d="M45 40V60H50C52.7614 60 55 57.7614 55 55V45C55 42.2386 52.7614 40 50 40H45Z"
-        fill="#0EA5E9"
+        fill="#1E90FF"
       />
     </svg>
   );

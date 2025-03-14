@@ -1,28 +1,29 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 224 47% 8%;
     --foreground: 213 31% 91%;
-    --card: 222 47% 11%;
+    --card: 224 47% 10%;
     --card-foreground: 213 31% 91%;
-    --popover: 222 47% 11%;
+    --popover: 224 47% 10%;
     --popover-foreground: 213 31% 91%;
-    --primary: 210 100% 50%;
+    --primary: 210 100% 56%;
     --primary-foreground: 210 40% 98%;
     --secondary: 217 32% 17%;
     --secondary-foreground: 210 40% 98%;
     --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 20% 70%;
     --accent: 217 32% 17%;
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 224 76% 48%;
+    --border: 217 32% 20%;
+    --input: 217 32% 20%;
+    --ring: 224 76% 56%;
     --radius: 1rem;
   }
 }
@@ -32,13 +33,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-sans;
     background-image: radial-gradient(
       circle at top right,
-      rgba(0, 149, 255, 0.07),
+      rgba(30, 144, 255, 0.08),
       transparent 40%
     );
     background-attachment: fixed;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold;
   }
 }
 
@@ -52,7 +56,7 @@
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400;
   }
 
   .hover-card {
@@ -60,7 +64,7 @@
   }
 
   .button-gradient {
-    @apply bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 
+    @apply bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 hover:from-blue-600 hover:via-indigo-600 hover:to-purple-600 
       text-white transition-all duration-300 shadow-lg hover:shadow-xl;
   }
 }
