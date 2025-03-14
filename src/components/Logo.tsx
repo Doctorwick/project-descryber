@@ -93,7 +93,7 @@ export const Logo = () => {
         animate={{ opacity: 1, x: 0 }}
         className="text-xl font-bold font-orbitron bg-gradient-to-r from-cyber-blue to-deep-blue bg-clip-text text-transparent"
       >
-        escryber
+        Descryber
       </motion.span>
     </div>
   );
