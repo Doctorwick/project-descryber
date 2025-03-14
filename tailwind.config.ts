@@ -23,8 +23,12 @@ export default {
         'sans': ['Outfit', 'system-ui', 'sans-serif'],
         'heading': ['Montserrat', 'sans-serif'],
         'mono': ['Fira Code', 'monospace'],
+        'orbitron': ['Orbitron', 'sans-serif'],
+        'archivo': ['Archivo', 'sans-serif'],
       },
       colors: {
+        'cyber-blue': '#92f7ff',
+        'deep-blue': '#016eff',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

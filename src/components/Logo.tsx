@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 
 export const Logo = () => {
@@ -28,7 +29,7 @@ export const Logo = () => {
           <defs>
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-              <feFlood floodColor="#0EA5E9" floodOpacity="0.5" result="glowColor"/>
+              <feFlood floodColor="#92f7ff" floodOpacity="0.5" result="glowColor"/>
               <feComposite in="glowColor" in2="coloredBlur" operator="in" result="softGlow"/>
               <feMerge>
                 <feMergeNode in="softGlow"/>
@@ -38,14 +39,14 @@ export const Logo = () => {
 
             {/* Enhanced gradients */}
             <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#0EA5E9" />
-              <stop offset="50%" stopColor="#1E40AF" />
-              <stop offset="100%" stopColor="#0284C7" />
+              <stop offset="0%" stopColor="#92f7ff" />
+              <stop offset="50%" stopColor="#016eff" />
+              <stop offset="100%" stopColor="#016eff" />
             </linearGradient>
 
             <linearGradient id="circuit-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#60A5FA" />
-              <stop offset="100%" stopColor="#93C5FD" />
+              <stop offset="0%" stopColor="#92f7ff" />
+              <stop offset="100%" stopColor="#016eff" />
             </linearGradient>
 
             {/* Metallic effect */}
@@ -90,7 +91,7 @@ export const Logo = () => {
       <motion.span 
         initial={{ opacity: 0, x: -10 }}
         animate={{ opacity: 1, x: 0 }}
-        className="text-xl font-bold bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 bg-clip-text text-transparent"
+        className="text-xl font-bold font-orbitron bg-gradient-to-r from-cyber-blue to-deep-blue bg-clip-text text-transparent"
       >
         escryber
       </motion.span>

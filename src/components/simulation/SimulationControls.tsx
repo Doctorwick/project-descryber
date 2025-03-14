@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Play, Pause, StopCircle } from "lucide-react";
 import { motion } from "framer-motion";
@@ -27,9 +28,9 @@ export const SimulationControls = ({
       {!isActive ? (
         <Button 
           onClick={onStart}
-          className="bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 border border-blue-500/30 hover:border-blue-500/50
+          className="bg-deep-blue/20 hover:bg-deep-blue/30 text-cyber-blue border border-deep-blue/30 hover:border-deep-blue/50
             transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 px-4 sm:px-6 
-            text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl"
+            text-sm sm:text-base font-archivo font-medium w-full sm:w-auto rounded-xl"
         >
           <Play className="w-4 h-4 sm:w-5 sm:h-5" />
           Start Simulation
@@ -39,11 +40,11 @@ export const SimulationControls = ({
           <Button 
             onClick={onPause}
             className={`transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 
-              px-4 sm:px-6 text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl
+              px-4 sm:px-6 text-sm sm:text-base font-archivo font-medium w-full sm:w-auto rounded-xl
               border border-yellow-500/30 hover:border-yellow-500/50 ${
               isPaused 
-                ? 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300' 
-                : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-300'
+                ? 'bg-yellow-500/20 hover:bg-yellow-500/30 text-cyber-blue' 
+                : 'bg-yellow-500/20 hover:bg-yellow-500/30 text-cyber-blue'
             }`}
           >
             <Pause className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -51,9 +52,9 @@ export const SimulationControls = ({
           </Button>
           <Button 
             onClick={onStop}
-            className="bg-red-500/20 hover:bg-red-500/30 text-red-300 border border-red-500/30 hover:border-red-500/50
+            className="bg-red-500/20 hover:bg-red-500/30 text-cyber-blue border border-red-500/30 hover:border-red-500/50
               transition-all duration-300 shadow hover:shadow-lg gap-2 h-10 sm:h-11 px-4 sm:px-6 
-              text-sm sm:text-base font-medium w-full sm:w-auto rounded-xl"
+              text-sm sm:text-base font-archivo font-medium w-full sm:w-auto rounded-xl"
           >
             <StopCircle className="w-4 h-4 sm:w-5 sm:h-5" />
             Stop

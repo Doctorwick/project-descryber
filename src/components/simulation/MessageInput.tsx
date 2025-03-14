@@ -1,3 +1,4 @@
+
 import { motion } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,7 @@ export const MessageInput = ({
     >
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent -top-20 pointer-events-none" />
       <div className="relative flex flex-col sm:flex-row gap-2 sm:gap-3 bg-background/90 backdrop-blur-md p-3 sm:p-4 
-        rounded-xl border border-blue-500/20 shadow-lg hover:shadow-xl transition-all duration-300">
+        rounded-xl border border-deep-blue/20 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="relative flex-1">
           <Input
             value={input}
@@ -36,14 +37,14 @@ export const MessageInput = ({
             onKeyPress={(e) => e.key === "Enter" && !isDisabled && !isLoading && handleSend()}
             placeholder={isDisabled ? "Simulation is paused..." : "Type a message to test..."}
             className={cn(
-              "flex-1 bg-background/90 backdrop-blur-sm border-blue-500/20 focus:border-blue-500/50",
-              "transition-all duration-300 pr-10 h-11 sm:h-12 text-sm sm:text-base rounded-xl text-foreground",
+              "flex-1 bg-background/90 backdrop-blur-sm border-deep-blue/20 focus:border-cyber-blue/50",
+              "transition-all duration-300 pr-10 h-11 sm:h-12 text-sm sm:text-base rounded-xl text-foreground font-archivo",
               isDisabled && "opacity-50"
             )}
             disabled={isDisabled || isLoading}
           />
           {isDisabled && (
-            <Pause className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400 w-4 h-4" />
+            <Pause className="absolute right-3 top-1/2 transform -translate-y-1/2 text-cyber-blue w-4 h-4" />
           )}
         </div>
         <motion.div 
@@ -54,10 +55,10 @@ export const MessageInput = ({
           <Button 
             onClick={handleSend} 
             className={cn(
-              "bg-blue-500/20 hover:bg-blue-500/30 text-blue-300",
+              "bg-deep-blue/20 hover:bg-deep-blue/30 text-cyber-blue",
               "transition-all duration-300 w-full sm:w-auto gap-2 shadow-lg hover:shadow-xl rounded-xl",
-              "h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base font-medium relative overflow-hidden",
-              "border border-blue-500/30 hover:border-blue-500/50"
+              "h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base font-archivo font-medium relative overflow-hidden",
+              "border border-deep-blue/30 hover:border-cyber-blue/50"
             )}
             disabled={isDisabled || isLoading}
           >
