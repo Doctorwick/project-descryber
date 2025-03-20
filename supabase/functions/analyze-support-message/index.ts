@@ -1,3 +1,4 @@
+
 import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3';
@@ -11,6 +12,27 @@ const supabase = createClient(supabaseUrl!, supabaseServiceKey!);
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+};
+
+// Normalized category mapping
+const categoryMapping = {
+  'crisis': ['crisis', 'emergency', 'urgent', 'suicide', 'harm'],
+  'mental': ['mental', 'psychological', 'therapy', 'depression', 'anxiety'],
+  'addiction': ['addiction', 'substance', 'drug', 'alcohol', 'eating'],
+  'communication': ['communication', 'social', 'relationship', 'family']
+};
+
+// Helper function to normalize resource categories
+const normalizeCategory = (category: string): string => {
+  const lowerCategory = category.toLowerCase();
+  
+  for (const [normalizedCategory, keywords] of Object.entries(categoryMapping)) {
+    if (keywords.some(keyword => lowerCategory.includes(keyword))) {
+      return normalizedCategory;
+    }
+  }
+  
+  return lowerCategory;
 };
 
 serve(async (req) => {
@@ -39,7 +61,7 @@ serve(async (req) => {
                 "topics": string[], // Key themes identified in the message
                 "urgency": "low" | "medium" | "high", // Assess risk level
                 "response": string, // Warm, supportive response (max 200 chars)
-                "resourceCategories": string[] // Relevant resource types: "crisis", "mental", "communication"
+                "resourceCategories": string[] // Relevant resource types: "crisis", "mental", "addiction", "communication"
               }
               
               Guidelines:
@@ -49,7 +71,8 @@ serve(async (req) => {
               - Acknowledge feelings
               - For high urgency, emphasize immediate help
               - For depression/anxiety, include "mental" category
-              - For relationship/social issues, include "communication" category`
+              - For relationship/social issues, include "communication" category
+              - For substance abuse or eating disorders, include "addiction" category`
           },
           { role: 'user', content: message }
         ],
@@ -66,7 +89,14 @@ serve(async (req) => {
     const analysis = JSON.parse(analysisData.choices[0].message.content);
     console.log('AI Analysis:', analysis);
 
-    // Fetch relevant resources based on categories
+    // Normalize resource categories to our consolidated categories
+    if (analysis.resourceCategories) {
+      analysis.resourceCategories = analysis.resourceCategories.map(normalizeCategory);
+      // Remove duplicates
+      analysis.resourceCategories = [...new Set(analysis.resourceCategories)];
+    }
+
+    // Fetch relevant resources based on normalized categories
     const { data: resources, error: dbError } = await supabase
       .from('support_resources')
       .select('*')
@@ -77,12 +107,11 @@ serve(async (req) => {
     if (dbError) throw dbError;
 
     // For high urgency, prioritize crisis resources
+    let sortedResources = resources || [];
     if (analysis.urgency === 'high') {
-      const crisisResources = resources?.filter(r => r.category === 'crisis') || [];
-      const otherResources = resources?.filter(r => r.category !== 'crisis') || [];
-      resources?.sort((a, b) => {
-        if (a.category === 'crisis') return -1;
-        if (b.category === 'crisis') return 1;
+      sortedResources.sort((a, b) => {
+        if (normalizeCategory(a.category) === 'crisis') return -1;
+        if (normalizeCategory(b.category) === 'crisis') return 1;
         return 0;
       });
     }
@@ -90,7 +119,7 @@ serve(async (req) => {
     return new Response(
       JSON.stringify({
         analysis,
-        resources: resources || []
+        resources: sortedResources
       }),
       { 
         headers: { 
