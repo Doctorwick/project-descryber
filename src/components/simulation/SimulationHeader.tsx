@@ -10,7 +10,10 @@ export const SimulationHeader = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <Logo />
+      <div className="p-2 sm:p-2.5 bg-gradient-to-br from-cyber-blue to-deep-blue rounded-xl 
+        shadow-inner group-hover:from-deep-blue group-hover:to-cyber-blue transition-colors duration-300">
+        <Logo />
+      </div>
       <div>
         <h1 className="text-xl sm:text-2xl font-bold font-orbitron text-gradient">
           Message Filter Demo

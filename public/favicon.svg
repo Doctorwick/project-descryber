@@ -6,10 +6,39 @@
   width="32"
   height="32"
 >
+  <defs>
+    <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#92f7ff" />
+      <stop offset="50%" stopColor="#016eff" />
+      <stop offset="100%" stopColor="#016eff" />
+    </linearGradient>
+
+    <linearGradient id="circuit-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#92f7ff" />
+      <stop offset="100%" stopColor="#016eff" />
+    </linearGradient>
+  </defs>
+
   <path
     d="M20 4L32 8V20C32 28 26 34 20 36C14 34 8 28 8 20V8L20 4Z"
-    fill="#016eff"
-    stroke="#92f7ff"
+    fill="url(#shield-gradient)"
+    stroke="url(#circuit-gradient)"
     strokeWidth="0.5"
+  />
+
+  <g stroke="url(#circuit-gradient)" strokeWidth="0.5" opacity="0.8">
+    <path d="M14 12H26M20 8V16" strokeLinecap="round" />
+    <path d="M12 20H16M24 20H28" strokeLinecap="round" />
+    <path d="M16 28L20 24L24 28" strokeLinecap="round" />
+  </g>
+
+  <path
+    d="M16 14V26H20C23.3 26 26 23.3 26 20C26 16.7 23.3 14 20 14H16Z"
+    fill="white"
+    fillOpacity="0.95"
+  />
+  <path
+    d="M19 17H20C21.7 17 23 18.3 23 20C23 21.7 21.7 23 20 23H19V17Z"
+    fill="url(#shield-gradient)"
   />
 </svg>
