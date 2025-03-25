@@ -1,3 +1,4 @@
+
 import { FilterResult } from "@/types/filter";
 import { analyzeWithAI } from "./aiAnalyzer";
 import { normalizeText } from "./textNormalizer";
@@ -36,12 +37,17 @@ export const analyzeContextAndIntent = async (text: string): Promise<AiAnalysisR
     };
   } catch (error) {
     console.error("Error in AI analysis:", error);
+    // Fall back to basic pattern matching when AI analysis fails
+    const gamingContext = /\b(game|play|server|lag|crash|bug|glitch)\b/i.test(text);
+    const frustrationContext = /\b(damn|shit|fuck|fck|f\*ck)\b.*\b(crash|lag|bug|glitch)\b/i.test(text);
+    const hasSwearing = /\b(damn|shit|fuck|fck|f\*ck|crap|hell)\b/i.test(text);
+    
     return {
-      toxicity: 0.5,
+      toxicity: hasSwearing ? 0.6 : 0.3,
       identity_attack: 0,
       insult: 0,
       threat: 0,
-      context_score: 0.5,
+      context_score: gamingContext && frustrationContext ? 0.8 : 0.4,
     };
   }
 };
