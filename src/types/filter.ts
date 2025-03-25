@@ -1,3 +1,4 @@
+
 export interface FilterResult {
   isHarmful: boolean;
   categories: string[];
@@ -16,4 +17,14 @@ export interface FilterResult {
 export interface PatternMatch {
   category: string;
   matches: string[];
+  severity?: "low" | "medium" | "high";
+  confidence?: number;
+}
+
+export interface BypassDetectionResult {
+  detected: boolean;
+  technique: string;
+  confidence: number;
+  originalText: string;
+  normalizedText: string;
 }
