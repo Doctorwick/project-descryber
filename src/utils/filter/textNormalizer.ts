@@ -1,4 +1,3 @@
-
 import { allowedContexts, bypassPatterns, bypassTechniques, dangerousPatterns } from './patterns';
 
 export const normalizeText = (text: string): string => {
@@ -75,7 +74,7 @@ export const isContextuallyAllowed = (text: string, profanity: string[]): boolea
       // Only allow if all profanity found is in the allowed list
       if (disallowedProfanity.length === 0) {
         // Additional check for mixed harmful content
-        const hasOtherHarmfulContent = /\b(kill|die|hate|stupid|idiot|ugly|murder|attack|shoot|stab|hurt|rape|molest|nazi|nigger|faggot|retard|suicide|terrorist|racist|white.+power|extremist)\b/i.test(text);
+        const hasOtherHarmfulContent = /\b(kill|die|hate|stupid|idiot|ugly|murder|attack|shoot|stab|hurt|rape|molest|nazi|nigger|faggot|fag|retard|suicide|terrorist|racist|white.+power|extremist)\b/i.test(text);
         return !hasOtherHarmfulContent;
       }
     }
@@ -114,7 +113,6 @@ export const detectBypassIntent = (originalText: string, normalizedText: string)
   return similarityScore < 0.6;
 };
 
-// Advanced similarity calculation for better bypass detection
 function calculateSimilarity(text1: string, text2: string): number {
   // Convert both texts to character sets for comparison
   const set1 = new Set(text1.toLowerCase().split(''));
@@ -134,7 +132,6 @@ function calculateSimilarity(text1: string, text2: string): number {
   return (jaccardSimilarity * 0.4) + (editSimilarity * 0.6);
 }
 
-// Levenshtein distance calculation
 function levenshteinDistance(str1: string, str2: string): number {
   const m = str1.length;
   const n = str2.length;
