@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send, Pause, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 interface MessageInputProps {
   input: string;
@@ -21,26 +20,6 @@ export const MessageInput = ({
   isDisabled,
   isLoading = false
 }: MessageInputProps) => {
-  const [localInput, setLocalInput] = useState(input);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLocalInput(e.target.value);
-    setInput(e.target.value);
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter" && !isDisabled && !isLoading && localInput.trim()) {
-      e.preventDefault();
-      handleSend();
-    }
-  };
-
-  const handleSendClick = () => {
-    if (localInput.trim() && !isDisabled && !isLoading) {
-      handleSend();
-    }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -53,9 +32,9 @@ export const MessageInput = ({
         rounded-xl border border-deep-blue/20 shadow-lg hover:shadow-xl transition-all duration-300">
         <div className="relative flex-1">
           <Input
-            value={localInput}
-            onChange={handleInputChange}
-            onKeyPress={handleKeyPress}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && !isDisabled && !isLoading && handleSend()}
             placeholder={isDisabled ? "Simulation is paused..." : "Type a message to test..."}
             className={cn(
               "flex-1 bg-background/90 backdrop-blur-sm border-deep-blue/20 focus:border-cyber-blue/50",
@@ -74,15 +53,14 @@ export const MessageInput = ({
           className="w-full sm:w-auto"
         >
           <Button 
-            onClick={handleSendClick} 
+            onClick={handleSend} 
             className={cn(
               "bg-deep-blue/20 hover:bg-deep-blue/30 text-cyber-blue",
               "transition-all duration-300 w-full sm:w-auto gap-2 shadow-lg hover:shadow-xl rounded-xl",
               "h-11 sm:h-12 px-4 sm:px-6 text-sm sm:text-base font-archivo font-medium relative overflow-hidden",
-              "border border-deep-blue/30 hover:border-cyber-blue/50",
-              (!localInput.trim() || isDisabled || isLoading) && "opacity-60 cursor-not-allowed"
+              "border border-deep-blue/30 hover:border-cyber-blue/50"
             )}
-            disabled={!localInput.trim() || isDisabled || isLoading}
+            disabled={isDisabled || isLoading}
           >
             {isLoading ? (
               <>

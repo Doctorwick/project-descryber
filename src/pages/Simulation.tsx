@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { useToast } from "@/components/ui/use-toast";
@@ -15,7 +14,6 @@ import { AlertCircle } from "lucide-react";
 
 export default function Simulation() {
   const [input, setInput] = useState("");
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
   const { toast } = useToast();
   const { 
     isActive, 
@@ -28,90 +26,50 @@ export default function Simulation() {
   } = useSimulationStore();
 
   const handleSend = async () => {
-    if (!input.trim() || !isActive || isPaused || isAnalyzing) return;
+    if (!input.trim() || !isActive || isPaused) return;
 
-    try {
-      setIsAnalyzing(true);
-      
-      // Add user message immediately for responsive UI
-      const pendingMessageId = Date.now();
-      const userMessage: Message = {
-        id: pendingMessageId,
-        text: input,
-        sender: "user",
-        timestamp: new Date().toISOString()
-      };
-      
-      setMessages([...messages, userMessage]);
-      setInput("");
-      
-      // Analyze the message
-      const filterResult = await analyzeMessage(input).catch(error => {
-        console.error("Error analyzing message:", error);
-        // Provide fallback analysis if the advanced analyzer fails
-        return {
-          isHarmful: /\b(fuck|shit|ass|bitch|cunt|nigger|faggot)\b/i.test(input),
-          categories: [],
-          severity: "medium",
-          confidence: 0.5,
-          bypassAttempted: false
-        };
-      });
-      
-      // Update the message with filter results
-      const updatedUserMessage: Message = {
-        ...userMessage,
-        isHidden: filterResult.isHarmful,
-        filterResult
-      };
-      
-      // Update the message in the state
-      setMessages(prev => prev.map(msg => 
-        msg.id === pendingMessageId ? updatedUserMessage : msg
-      ));
-      
-      // Store the message
-      await storeMessage(updatedUserMessage);
+    const filterResult = await analyzeMessage(input);
+    const newMessage: Message = {
+      id: Date.now(),
+      text: input,
+      sender: "user",
+      isHidden: filterResult.isHarmful,
+      timestamp: new Date().toISOString(),
+      filterResult
+    };
 
-      if (filterResult.isHarmful) {
-        toast({
-          title: "Message Hidden",
-          description: (
-            <div className="flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 text-destructive" />
-              <span>
-                Message contained {filterResult.categories.join(", ") || "harmful"} content 
-                with {filterResult.severity} severity.
-              </span>
-            </div>
-          ),
-          variant: "destructive"
-        });
-      }
+    setMessages([...messages, newMessage]);
+    setInput("");
+    await storeMessage(newMessage);
 
-      // Add bot response
-      setTimeout(async () => {
-        const botMessage: Message = {
-          id: Date.now() + 1,
-          text: filterResult.isHarmful 
-            ? `I noticed that message might contain ${filterResult.categories.join(" and ") || "harmful content"}. Let's keep our conversation respectful.`
-            : "Message received! Keep testing our filter system.",
-          sender: "bot",
-          timestamp: new Date().toISOString()
-        };
-        setMessages(prevMessages => [...prevMessages, botMessage]);
-        await storeMessage(botMessage);
-      }, 1000);
-    } catch (error) {
-      console.error("Error handling message:", error);
+    if (filterResult.isHarmful) {
       toast({
-        title: "Error Processing Message",
-        description: "There was a problem processing your message. Please try again.",
+        title: "Message Hidden",
+        description: (
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-destructive" />
+            <span>
+              Message contained {filterResult.categories.join(", ")} content 
+              with {filterResult.severity} severity.
+            </span>
+          </div>
+        ),
         variant: "destructive"
       });
-    } finally {
-      setIsAnalyzing(false);
     }
+
+    setTimeout(async () => {
+      const botMessage: Message = {
+        id: Date.now() + 1,
+        text: filterResult.isHarmful 
+          ? `I noticed that message might contain ${filterResult.categories.join(" and ")}. Let's keep our conversation respectful.`
+          : "Message received! Keep testing our filter system.",
+        sender: "bot",
+        timestamp: new Date().toISOString()
+      };
+      setMessages((prevMessages: Message[]) => [...prevMessages, botMessage]);
+      await storeMessage(botMessage);
+    }, 1000);
   };
 
   const handleStart = () => {
@@ -173,7 +131,6 @@ export default function Simulation() {
                 setInput={setInput}
                 handleSend={handleSend}
                 isDisabled={!isActive || isPaused}
-                isLoading={isAnalyzing}
               />
             </div>
           </motion.div>
